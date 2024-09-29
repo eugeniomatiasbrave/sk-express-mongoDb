@@ -38,7 +38,7 @@
                                         <a href={`/products/${p._id}/edit`} class="btn btn-primary">Edit</a>
                                     </td>
                                     <td>
-                                        <form method="POST" action="/products/delete">
+                                        <form method="POST" action={`/products/${p._id}/delete`}>
                                             <input type="hidden" name="pid" value={p._id} />
                                             <button type="submit" class="btn btn-warning">Delete</button>
                                         </form>
