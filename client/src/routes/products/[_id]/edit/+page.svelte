@@ -6,8 +6,9 @@
 
     
  console.log(product.data._id);
+ console.log(product.data.code);
  console.log(product.data.name);
- console.log(product.data.description);
+ console.log(product.data.presentation);
  console.log(product.data.price);
 
     
@@ -22,6 +23,19 @@
                 <form method="POST">
                     <input type="hidden" name="id" value={product.data._id} />
                     <div class="form-control">
+                        <label class="label" for="code">
+                            <span class="label-text">Code</span>
+                        </label>
+                        <input
+                            type="text"
+                            name="code"
+                            value={product.data.code}
+                            placeholder="Product Code"
+                            class="input input-bordered"
+                            required
+                        />
+                    </div>
+                    <div class="form-control">
                         <label class="label" for="name">
                             <span class="label-text">Name</span>
                         </label>
@@ -35,14 +49,14 @@
                         />
                     </div>
                     <div class="form-control">
-                        <label class="label" for="description">
-                            <span class="label-text">Description</span>
+                        <label class="label" for="presentation">
+                            <span class="label-text">Presentation</span>
                         </label>
                         <input
                             type="text"
-                            name="description"
-                            value={product.data.description}
-                            placeholder="Description"
+                            name="presentation"
+                            value={product.data.presentation}
+                            placeholder="Presentation of Product"
                             class="input input-bordered"
                             required
                         />

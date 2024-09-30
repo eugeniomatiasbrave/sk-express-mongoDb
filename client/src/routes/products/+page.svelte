@@ -1,7 +1,5 @@
 <script>
     export let data;
-
-	
 	const Products = data.products.payload;
   
 </script>
@@ -19,21 +17,25 @@
                         <!-- head -->
                         <thead class="text-center">
                             <tr>
-                                <th>Id</th>
+                                <th>Code</th>
                                 <th>Name</th>
-                                <th>Descripcion</th>
+                                <th>Presentation</th>
                                 <th>Price</th>
+                                <th>Detail</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            {#each Products as p }
+                            {#each Products as p (p._id)}
                                 <tr class="hover">
-                                    <td>{p._id}</td>
+                                    <td>{p.code}</td>
                                     <td>{p.name}</td>
-                                    <td>{p.description}</td>
+                                    <td>{p.presentation}</td>
                                     <td>{p.price}</td>
+                                    <td>
+                                        <a href={`/products/${p._id}/detail`} class="btn btn-primary">Detail</a>
+                                    </td>
                                     <td>
                                         <a href={`/products/${p._id}/edit`} class="btn btn-primary">Edit</a>
                                     </td>

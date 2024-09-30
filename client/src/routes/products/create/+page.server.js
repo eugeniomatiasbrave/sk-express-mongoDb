@@ -5,21 +5,23 @@ import { redirect } from '@sveltejs/kit';
 export const actions = {
 	default: async ({ request }) => {
 		const formData = await request.formData();
+		const code = formData.get('code');
 		const name = formData.get('name');
-		const description = formData.get('description');
+		const presentation = formData.get('presentation');
 		const price = formData.get('price');
 
 		if (isNaN(price)) {
 			return { success: false, error: 'Error, is not an number' };
 		}
 
-		if (!name || !description || !price) {
+		if (!name || !presentation || !price || !code) {
 			return { success: false, error: 'Error Data ' };
 		}
 
 		const newProduct = {
+			code,
 			name,
-			description,
+			presentation,
 			price
 		};
 

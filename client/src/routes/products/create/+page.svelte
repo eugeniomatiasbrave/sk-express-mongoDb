@@ -10,6 +10,19 @@
 				<h2 class="text-xl font-bold">New Product</h2>
 				<form method="POST">
 					<div class="form-control">
+						<label class="label" for="code">
+							<span class="label-text">Code</span>
+						</label>
+						<input
+							type="text"
+							name="code"
+							value={form?.code ?? ''}
+							placeholder="Code of Product"
+							class="input input-bordered"
+							required
+						/>
+					</div>
+					<div class="form-control">
 						<label class="label" for="name">
 							<span class="label-text">Name</span>
 						</label>
@@ -23,14 +36,14 @@
 						/>
 					</div>
 					<div class="form-control">
-						<label class="label" for="description">
-							<span class="label-text">Description</span>
+						<label class="label" for="presentation">
+							<span class="label-text">Presentation</span>
 						</label>
 						<input
 							type="text"
-							name="description"
-							value={form?.fescription ?? ''}
-							placeholder="Description"
+							name="presentation"
+							value={form?.presentation ?? ''}
+							placeholder="Presentation of Product"
 							class="input input-bordered"
 							required
 						/>
