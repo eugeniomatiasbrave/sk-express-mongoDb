@@ -18,20 +18,21 @@ router.get("/", async (req, res) => {
 
 //Endpoint para crear una producto.
 router.post('/', async (req, res) => {
-    const { name, description, price } = req.body;
+    const { code, name, presentation, price } = req.body;
 
     if (isNaN(price)) {
         return res.status(400).send({ status: "error", error: 'Error, is not a number' });
     };
 
-    if (!name || !description || !price) {
+    if (!name || !presentation || !price || !code) {
         return res.status(400).send({ status: "error", error: 'Error Data ' }); //   
     };
 
     try {
         const newProduct = {
+            code,
             name,
-            description,
+            presentation,
             price  
         };
 
@@ -97,7 +98,7 @@ router.put('/:pid', async (req, res) => { // esta correcto: 27/09 8:02 am , no c
         const { pid } = req.params;
         const updateData = req.body;
 
-        if (!updateData.name || !updateData.description || !updateData.price) {
+        if (!updateData.name || !updateData.presentation || !updateData.price || !updateData.code) {
             return res.status(400).send({ status: "error", error: 'Faltan datos para actualizar el producto' });
         }
         // Númerico y positivo

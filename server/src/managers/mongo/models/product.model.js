@@ -3,11 +3,15 @@ import mongoose from 'mongoose';
 const collection = "Products"
 const schema = new mongoose.Schema({
 
+    code: {
+        type:String,
+        required:true
+    },
 	name: {
         type:String,
         required:true
     },
-    description: {
+    presentation: {
 		type:String,
 	    required:true
     },
