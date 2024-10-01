@@ -1,6 +1,5 @@
 import { redirect } from '@sveltejs/kit';
-
-/** @type {import('./$types').Actions} */
+const API_URL = process.env.VITE_API_URL;
 
 export const actions = {
     default: async ({ request }) => {
@@ -11,7 +10,7 @@ export const actions = {
             return { success: false, error: 'Product ID is required' };
         }
 
-        const result = await fetch(`http://localhost:8080/api/products/${pid}`, {
+        const result = await fetch(`${API_URL}/products/${pid}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

@@ -1,11 +1,11 @@
 import { redirect } from '@sveltejs/kit';
+const API_URL = process.env.VITE_API_URL;
 
 export async function load({ params }) {
-
     const { _id } = params;
     
     try {
-        const response = await fetch(`http://localhost:8080/api/products/${_id}`);
+        const response = await fetch(`${API_URL}/products/${_id}`);
         if (!response.ok) {
             throw new Error('Product not found');
         }
@@ -16,7 +16,6 @@ export async function load({ params }) {
         return { status: 500, error: 'Internal Error' };
     }
 }
-
 
 export const actions = {
     default: async ({ request }) => {
@@ -30,7 +29,6 @@ export const actions = {
         if (isNaN(price)) {
             return { success: false, error: 'Error, is not a number' };
         }
-
         if (!name || !presentation || !price || !code) {
             return { success: false, error: 'Error Data' };
         }
@@ -42,7 +40,7 @@ export const actions = {
             price
         };
 
-        const result = await fetch(`http://localhost:8080/api/products/${pid}`, {
+        const result = await fetch(`${API_URL}/products/${pid}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +51,6 @@ export const actions = {
         if (!result.ok) {
             return { success: false, error: 'Error updating product' };
         }
-
         throw redirect(303, '/products');
     }
 }

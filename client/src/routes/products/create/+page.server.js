@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 
-/** @type {import('./$types').Actions} */
+const API_URL = process.env.VITE_API_URL;
 
 export const actions = {
 	default: async ({ request }) => {
@@ -25,7 +25,7 @@ export const actions = {
 			price
 		};
 
-		const result = await fetch('http://localhost:8080/api/products', {
+		const result = await fetch(`${API_URL}/products`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
