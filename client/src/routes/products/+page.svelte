@@ -34,7 +34,7 @@
                                     <td>{p.presentation}</td>
                                     <td>{p.price}</td>
                                     <td>
-                                        <a href={`/products/${p._id}/detail`} class="btn btn-primary">Detail</a>
+                                        <a href={`/products/${p._id}`} class="btn btn-primary">Detail</a>
                                     </td>
                                     <td>
                                         <a href={`/products/${p._id}/edit`} class="btn btn-primary">Edit</a>
