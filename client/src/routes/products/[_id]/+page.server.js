@@ -5,14 +5,23 @@ export async function load({ params }) {
     const { _id } = params;
 
     try {
-        const response = await fetch(`${API_URL}/products/${_id}`);
-        if (!response.ok) {
-            throw new Error('Product not found');
+        const getProductById = async () => {
+            const response = await fetch(`${API_URL}/products/${_id}`);
+            const data = await response.json();
+            
+            if (!response.ok) {
+                throw new Error('Product not found');
+            }
+
+            return data;
         }
-        const productById = await response.json();
-        return { productById };
+        
+        return {
+            productById: await getProductById(),
+
+        };
+
     } catch (err) {
-        console.error('Error loading product:', err);
-        throw error(500, 'Internal Error');
+        return error(404, err.message );
     }
 }

@@ -1,19 +1,28 @@
-import { redirect } from '@sveltejs/kit';
+import { redirect, error } from '@sveltejs/kit';
 const API_URL = process.env.VITE_API_URL;
 
 export async function load({ params }) {
     const { _id } = params;
-    
+
     try {
-        const response = await fetch(`${API_URL}/products/${_id}`);
-        if (!response.ok) {
-            throw new Error('Product not found');
+        const getProduct = async () => {
+            const response = await fetch(`${API_URL}/products/${_id}`);
+            const data = await response.json();
+            
+            if (!response.ok) {
+                throw new Error('Product not found');
+            }
+
+            return data;
         }
-        const product = await response.json();
-        return { product };
-    } catch (error) {
-        console.error('Error loading product:', error);
-        return { status: 500, error: 'Internal Error' };
+        
+        return {
+            product: await getProduct(),
+
+        };
+
+    } catch (err) {
+        return error( 404, err.message );
     }
 }
 
